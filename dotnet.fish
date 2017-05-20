@@ -53,3 +53,12 @@ complete -fc dotnet -n '__fish_npm_needs_command' -a sln        -d 'Modify solut
 for app in 'console' 'classlib' 'mstest' 'xunit' 'web' 'mvc' 'webapi' 'sln'
     complete -fc dotnet -n '__fish_npm_using_command new' -a $app    -d "New $app"
 end
+
+function proj 
+    set a = (find . -name '*.fsproj')
+    echo $a
+end
+
+complete -fc dotnet -n '__fish_npm_using_command build' --arguments '(__fish_complete_directories (commandline -ct))' 
+# complete -fc dotnet -n '__fish_npm_using_command restore' --arguments "(mdfind -onlyin . -name proj)"
+complete -fc dotnet -n '__fish_npm_using_command restore' --arguments "(find $PWD -name '*proj')"
