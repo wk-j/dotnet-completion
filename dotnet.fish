@@ -1,18 +1,45 @@
-function _new_options
-    find . -name "*.*"
+function __fish_npm_using_command
+    set cmd (commandline -opc)
+
+    if [ (count $cmd) -gt 1 ]
+        if [ $argv[1] = $cmd[2] ]
+            return 0
+        end
+    end
+
+    return 1
 end
 
-complete -fc dotnet -xa '(__fish_complete_pids)'
+function __fish_npm_needs_option
+    switch (commandline -ct)
+        case "-*"
+            return 0
+    end
+    return 1
+end
 
-complete -fc dotnet -a "new" -d "New project"
-complete -fc dotnet -a "console" -n '__fish_contains_opt new' -d "Console"
-complete -fc dotnet -a "restore"    -d "Restore packages"
+function __fish_npm_needs_command
+    set cmd (commandline -opc)
 
-complete -fc dotnet -a "-v --verbose"       -d "Enables verbose output"
-complete -fc dotnet -a "-d --disgnostics"   -d "Enables diagonostic"
+    if [ (count $cmd) -eq 1 ]
+        return 0
+    end
 
-complete -c xxurl -a '(__fish_complete_file_url)'
-complete -c xxpath -a '(__fish_complete_path)'
-complete -c xxdir -a '(__fish_complete_directories)'
+    return 1
+end
 
-complete -c xxln -f -s t -l target-directory -xa "(__fish_complete_directories (commandline -ct) 'Target directory')" -d 'Specify the DIRECTORY in which to create the links'
+
+complete -fc dotnet -n '__fish_npm_needs_command' -a new        -d 'Initialize .NET projects'
+complete -fc dotnet -n '__fish_npm_needs_command' -a restore    -d 'Restore dependencies specified in the .NET project'
+complete -fc dotnet -n '__fish_npm_needs_command' -a build      -d 'Build a .NET projects'
+complete -fc dotnet -n '__fish_npm_needs_command' -a publish    -d 'Publishes a .NET project for deployment (including the runtime)'
+complete -fc dotnet -n '__fish_npm_needs_command' -a run        -d 'Compiles and immediately executes a .NET project'
+complete -fc dotnet -n '__fish_npm_needs_command' -a test       -d 'Run unit tests uing the test runner specified in the project'
+complete -fc dotnet -n '__fish_npm_needs_command' -a pack       -d 'Creates a NuGet package'
+complete -fc dotnet -n '__fish_npm_needs_command' -a migrate    -d 'Migrates a project.json based project to msbuild based project'
+complete -fc dotnet -n '__fish_npm_needs_command' -a clean      -d 'Clean build output(s)'
+complete -fc dotnet -n '__fish_npm_needs_command' -a sln        -d 'Modify solution (SLN) files'
+
+complete -fc dotnet -n '__fish_npm_using_command new' -a console -d 'Bypass file conflict checks'
+complete -fc dotnet -n '__fish_npm_using_command new' -a web -d 'Bypass file conflict checks'
+complete -fc dotnet -n '__fish_npm_using_command console' -a '--language' -d 'Bypass file conflict checks'
