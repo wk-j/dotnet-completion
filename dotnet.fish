@@ -51,14 +51,23 @@ complete -fc dotnet -n '__fish_npm_needs_command' -a clean      -d 'Clean build 
 complete -fc dotnet -n '__fish_npm_needs_command' -a sln        -d 'Modify solution (SLN) files'
 
 for app in 'console' 'classlib' 'mstest' 'xunit' 'web' 'mvc' 'webapi' 'sln'
-    complete -fc dotnet -n '__fish_npm_using_command new' -a $app    -d "New $app"
+    complete -fc dotnet -n '__fish_npm_using_command new' -a $app  
 end
 
-function proj 
-    set a = (find . -name '*.fsproj')
-    echo $a
+function projs
+    find $PWD -name '*.fsproj'
+    find $PWD -name '*.csproj'
+    find $PWD -name '*.sln'
 end
 
-complete -fc dotnet -n '__fish_npm_using_command build' --arguments '(__fish_complete_directories (commandline -ct))' 
-# complete -fc dotnet -n '__fish_npm_using_command restore' --arguments "(mdfind -onlyin . -name proj)"
-complete -fc dotnet -n '__fish_npm_using_command restore' --arguments "(find $PWD -name '*proj')"
+complete -fc dotnet -n '__fish_npm_using_command build'         -a '(projs)' 
+complete -fc dotnet -n '__fish_npm_using_command restore'       -a '(projs)'
+complete -fc dotnet -n '__fish_npm_using_command run'           -l  project  -xa '(projs)'
+complete -fc dotnet -n '__fish_npm_using_command -l project'    -a '(projs)'
+complete -fc dotnet -n '__fish_npm_using_command clean'         -a '(projs)'
+complete -fc dotnet -n '__fish_npm_using_command pack'          -a '(projs)'
+complete -fc dotnet -n '__fish_npm_using_command test'          -a '(projs)'
+
+# complete -fc dotnet -n '__fish_npm_using_command'         -xa '(projs)'
+
+complete -c dotnet -s m -d 'Run library module as a script (terminates option list)' -xa '(python -c "import pkgutil; print(\'\n\'.join([p[1] for p in pkgutil.iter_modules()]))")'
