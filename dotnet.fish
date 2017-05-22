@@ -55,12 +55,24 @@ for app in 'console' 'classlib' 'mstest' 'xunit' 'web' 'mvc' 'webapi' 'sln'
     complete -fc dotnet -n '__fish_npm_using_command new $app'      -l language -xa 'F# C#'
 end
 
+function slns
+    find $PWD -name '*.sln'
+end
+
 function projs
     find $PWD -name '*.fsproj'
     find $PWD -name '*.csproj'
     find $PWD -name '*.sln'
 end
 
+# SLN
+complete -fc dotnet -n '__fish_npm_using_command sln'           -xa '(slns)'
+complete -fc dotnet -n '__fish_npm_using_command sln'           -xa add
+complete -fc dotnet -n '__fish_npm_using_command sln'           -xa remove
+complete -fc dotnet -n '__fish_npm_using_command sln add'       -xa '(projs)'
+complete -fc dotnet -n '__fish_npm_using_command sln remove'    -xa '(projs)'
+
+complete -fc dotnet -n '__fish_npm_using_command new sln'       -l name 
 
 complete -fc dotnet -n '__fish_npm_using_command build'         -xa '(projs)' 
 complete -fc dotnet -n '__fish_npm_using_command restore'       -xa '(projs)'
@@ -68,7 +80,6 @@ complete -fc dotnet -n '__fish_npm_using_command run'           -l  project -xa 
 complete -fc dotnet -n '__fish_npm_using_command clean'         -xa '(projs)'
 complete -fc dotnet -n '__fish_npm_using_command pack'          -l  output  -xa '(__fish_complete_directories (commandline -ct))' 
 complete -fc dotnet -n '__fish_npm_using_command pack'          -xa '(projs)'
-
 complete -fc dotnet -n '__fish_npm_using_command test'          -xa '(projs)'
 
 # complete -c dotnet -s m -d 'Run library module as a script (terminates option list)' -xa '(python -c "import pkgutil; print(\'\n\'.join([p[1] for p in pkgutil.iter_modules()]))")'
