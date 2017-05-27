@@ -82,4 +82,12 @@ complete -fc dotnet -n '__fish_npm_using_command pack'          -l  output  -xa 
 complete -fc dotnet -n '__fish_npm_using_command pack'          -xa '(projs)'
 complete -fc dotnet -n '__fish_npm_using_command test'          -xa '(projs)'
 
+abbr --add dnn "dotnet new"
+abbr --add drr "dotnet restore"
+abbr --add duu "dotnet run --project"
+abbr --add dtt "dotnet test"
+abbr --add dss "dotnet sln"
+abbr --add dpp "dotnet pack"
+abbr --add dbb "dotnet build"
+
 # complete -c dotnet -s m -d 'Run library module as a script (terminates option list)' -xa '(python -c "import pkgutil; print(\'\n\'.join([p[1] for p in pkgutil.iter_modules()]))")'
