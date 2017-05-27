@@ -38,6 +38,16 @@ function __fish_npm_needs_command
     return 1
 end
 
+function __slns
+    find $PWD -name '*.sln'
+end
+
+function __projs
+    find $PWD -name '*.fsproj'
+    find $PWD -name '*.csproj'
+    find $PWD -name '*.sln'
+end
+
 complete -fc dotnet -n '__fish_npm_needs_command' -a new        -d 'Initialize .NET projects'
 complete -fc dotnet -n '__fish_npm_needs_command' -a restore    -d 'Restore dependencies specified in the .NET project'
 complete -fc dotnet -n '__fish_npm_needs_command' -a build      -d 'Build a .NET projects'
@@ -50,38 +60,32 @@ complete -fc dotnet -n '__fish_npm_needs_command' -a clean      -d 'Clean build 
 complete -fc dotnet -n '__fish_npm_needs_command' -a sln        -d 'Modify solution (SLN) files'
 
 for app in 'console' 'classlib' 'mstest' 'xunit' 'web' 'mvc' 'webapi' 'sln'
-    complete -fc dotnet -n '__fish_npm_using_command new' -a $app  
+    complete -fc dotnet -n '__fish_npm_using_command new'           -xa $app  
     complete -fc dotnet -n '__fish_npm_using_command new $app'      -l output   -xa '(__fish_complete_directories (commandline -ct))'
     complete -fc dotnet -n '__fish_npm_using_command new $app'      -l language -xa 'F# C#'
 end
 
-function slns
-    find $PWD -name '*.sln'
-end
-
-function projs
-    find $PWD -name '*.fsproj'
-    find $PWD -name '*.csproj'
-    find $PWD -name '*.sln'
-end
-
-# SLN
-complete -fc dotnet -n '__fish_npm_using_command sln'           -xa '(slns)'
+complete -fc dotnet -n '__fish_npm_using_command sln'           -xa '(__slns)'
 complete -fc dotnet -n '__fish_npm_using_command sln'           -xa add
 complete -fc dotnet -n '__fish_npm_using_command sln'           -xa remove
-complete -fc dotnet -n '__fish_npm_using_command sln add'       -xa '(projs)'
-complete -fc dotnet -n '__fish_npm_using_command sln remove'    -xa '(projs)'
+complete -fc dotnet -n '__fish_npm_using_command sln add'       -xa '(__projs)'
+complete -fc dotnet -n '__fish_npm_using_command sln remove'    -xa '(__projs)'
+
+complete -fc dotnet -n '__fish_npm_using_command add'           -xa '(__projs)'
+complete -fc dotnet -n '__fish_npm_using_command add'           -xa 'package reference'
+complete -fc dotnet -n '__fish_npm_using_command add'           -xa '(__projs)'
 
 complete -fc dotnet -n '__fish_npm_using_command new sln'       -l name 
 
-complete -fc dotnet -n '__fish_npm_using_command build'         -xa '(projs)' 
-complete -fc dotnet -n '__fish_npm_using_command restore'       -xa '(projs)'
-complete -fc dotnet -n '__fish_npm_using_command run'           -l  project -xa '(projs)'
-complete -fc dotnet -n '__fish_npm_using_command clean'         -xa '(projs)'
+complete -fc dotnet -n '__fish_npm_using_command build'         -xa '(__projs)' 
+complete -fc dotnet -n '__fish_npm_using_command restore'       -xa '(__projs)'
+complete -fc dotnet -n '__fish_npm_using_command run'           -l  project -xa '(__projs)'
+complete -fc dotnet -n '__fish_npm_using_command clean'         -xa '(__projs)'
 complete -fc dotnet -n '__fish_npm_using_command pack'          -l  output  -xa '(__fish_complete_directories (commandline -ct))' 
-complete -fc dotnet -n '__fish_npm_using_command pack'          -xa '(projs)'
-complete -fc dotnet -n '__fish_npm_using_command test'          -xa '(projs)'
+complete -fc dotnet -n '__fish_npm_using_command pack'          -xa '(__projs)'
+complete -fc dotnet -n '__fish_npm_using_command test'          -xa '(__projs)'
 
+abbr --add daa "dotnet add"
 abbr --add dnn "dotnet new"
 abbr --add drr "dotnet restore"
 abbr --add duu "dotnet run --project"
