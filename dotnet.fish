@@ -186,4 +186,10 @@ abbr --add dpp "dotnet pack"
 abbr --add dbb "dotnet build"
 abbr --add dcc "dotnet clean"
 
+function dcd 
+    cd (dirname $argv[1])
+end
+
+complete -fc dcd -xa '(__projs)'
+
 # complete -c dotnet -s m -d 'Run library module as a script (terminates option list)' -xa '(python -c "import pkgutil; print(\'\n\'.join([p[1] for p in pkgutil.iter_modules()]))")'
