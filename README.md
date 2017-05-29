@@ -16,9 +16,10 @@
 
 #### Utility
 
-- dproj <tab>
+- dproject <tab>
+- dsolution <tab>
 - droot
 
 #### Cake build
  
-- crun <tab>
+- dcake <tab>
