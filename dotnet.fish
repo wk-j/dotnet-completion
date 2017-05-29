@@ -195,6 +195,15 @@ function droot
     cd $__droot
 end
 
+function crun
+    ./build.sh --target $argv[1]
+end
+
+function __crun_list
+    cat build.cake | grep  "Task" | grep -o '"[^"]\+"' | tr -d '"'
+end
+
 complete -fc dproj -xa '(__projs)'
+complete -fc crun  -xa '(__crun_list)'
 
 # complete -c dotnet -s m -d 'Run library module as a script (terminates option list)' -xa '(python -c "import pkgutil; print(\'\n\'.join([p[1] for p in pkgutil.iter_modules()]))")'
