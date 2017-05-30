@@ -4,22 +4,22 @@
 
 #### .NET command line
 
-- daa = "dotnet add <tab>"
-- dnn = "dotnet new <tab>"
-- drr = "dotnet restore <tab>"
-- duu = "dotnet run --project <tab>"
-- dtt = "dotnet test <tab>"
-- dss = "dotnet sln <tab>"
-- dpp = "dotnet pack <tab>"
-- dbb = "dotnet build <tab>"
-- dcc = "dotnet clean"
+- daa = dotnet add `<tab>`
+- dnn = dotnet new `<tab>`
+- drr = dotnet restore `<tab>`
+- duu = dotnet run --project `<tab>`
+- dtt = dotnet test `<tab>`
+- dss = dotnet sln `<tab>`
+- dpp = dotnet pack `<tab>`
+- dbb = dotnet build `<tab>`
+- dcc = dotnet clean
 
 #### Utility
 
-- dproject <tab>
-- dsolution <tab>
-- droot
+- d-project `<tab>`
+- d-solution `<tab>`
+- d-root
 
 #### Cake build
  
-- dcake <tab>
+- d-cake `<tab>`

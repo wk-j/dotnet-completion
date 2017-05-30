@@ -186,16 +186,16 @@ abbr --add dpp "dotnet pack"
 abbr --add dbb "dotnet build"
 abbr --add dcc "dotnet clean"
 
-function dproject
+function d-project
     set -g __droot (pwd)
     cd (dirname $argv[1])
 end
 
-function droot
+function d-root
     cd $__droot
 end
 
-function dsolution 
+function d-solution 
     cd (dirname $argv[1])
 end
 
@@ -203,7 +203,7 @@ function __dsolution_list
     mdfind -name ".sln"
 end
 
-function dcake
+function d-cake
     ./build.sh --target $argv[1]
 end
 
@@ -211,8 +211,8 @@ function __dcake_list
     cat build.cake | grep  "Task" | grep -o '"[^"]\+"' | tr -d '"'
 end
 
-complete -fc dproject   -xa '(__projs)'
-complete -fc dcake      -xa '(__dcake_list)'
-complete -fc dsolution  -xa '(__dsolution_list)' 
+complete -fc d-project   -xa '(__projs)'
+complete -fc d-cake      -xa '(__dcake_list)'
+complete -fc d-solution  -xa '(__dsolution_list)' 
 
 # complete -c dotnet -s m -d 'Run library module as a script (terminates option list)' -xa '(python -c "import pkgutil; print(\'\n\'.join([p[1] for p in pkgutil.iter_modules()]))")'
