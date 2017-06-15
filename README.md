@@ -4,6 +4,7 @@
 
 #### .NET command line
 
+```bash
 - daa = dotnet add `<tab>`
 - dnn = dotnet new `<tab>`
 - drr = dotnet restore `<tab>`
@@ -13,12 +14,15 @@
 - dpp = dotnet pack `<tab>`
 - dbb = dotnet build `<tab>`
 - dcc = dotnet clean
+```
 
 #### Utility
 
+```bash
 - d-project `<tab>`
 - d-solution `<tab>`
 - d-root
+```
 
 #### Cake build
  
