@@ -2,9 +2,9 @@
 
 ![](Screen/DotCompletion.png)
 
-#### .NET command line
+### .NET command line
 
-```bash
+```
 - daa = dotnet add `<tab>`
 - dnn = dotnet new `<tab>`
 - drr = dotnet restore `<tab>`
@@ -16,14 +16,16 @@
 - dcc = dotnet clean
 ```
 
-#### Utility
+### Utility
 
-```bash
+```
 - d-project `<tab>`
 - d-solution `<tab>`
 - d-root
 ```
 
-#### Cake build
+### Cake build
  
+```
 - d-cake `<tab>`
+```
