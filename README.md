@@ -2,7 +2,7 @@
 
 ![](Screen/DotCompletion.png)
 
-### .NET command line
+### .NET Command Line
 
 ```
 - daa = dotnet add <tab>
@@ -24,8 +24,9 @@
 - d-root
 ```
 
-### Cake build
+### Cake Build
  
 ```
 - d-cake <tab>
+- d-ck <tab>
 ```

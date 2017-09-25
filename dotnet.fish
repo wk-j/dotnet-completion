@@ -211,8 +211,14 @@ function __dcake_list
     cat build.cake | grep  "Task" | grep -o '"[^"]\+"' | tr -d '"'
 end
 
+function d-ck 
+    cake build.cake -target=$argv[1] -experimental
+end
+
 complete -fc d-project   -xa '(__projs)'
 complete -fc d-cake      -xa '(__dcake_list)'
 complete -fc d-solution  -xa '(__dsolution_list)' 
+
+complete -fc d-ck      -xa '(__dcake_list)'
 
 # complete -c dotnet -s m -d 'Run library module as a script (terminates option list)' -xa '(python -c "import pkgutil; print(\'\n\'.join([p[1] for p in pkgutil.iter_modules()]))")'
