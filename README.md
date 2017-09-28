@@ -28,5 +28,4 @@
  
 ```
 - d-cake <tab>
-- d-ck <tab>
 ```
