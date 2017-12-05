@@ -164,6 +164,8 @@ complete -fc dotnet -n 'add_select_project1'           -xa '(__projs)'
 complete -fc dotnet -n 'add_select_type'               -xa 'package reference'
 complete -fc dotnet -n 'add_select_project2'           -xa '(__projs)'
 
+
+
 #################### new ##########################
 
 complete -fc dotnet -n 'dotnet_using_command new'       -l name 
@@ -203,10 +205,6 @@ function __dsolution_list
     mdfind -name ".sln"
 end
 
-#function d-cake
-#    ./build.sh --target $argv[1]
-#end
-
 function __dcake_list
     cat build.cake | grep  "Task" | grep -o '"[^"]\+"' | tr -d '"'
 end
@@ -215,10 +213,44 @@ function d-cake
     cake build.cake -target=$argv[1] -experimental
 end
 
-complete -fc d-project   -xa '(__projs)'
-#complete -fc d-cake      -xa '(__dcake_list)'
-complete -fc d-solution  -xa '(__dsolution_list)' 
 
+complete -fc d-project   -xa '(__projs)'
+complete -fc d-solution  -xa '(__dsolution_list)' 
 complete -fc d-cake      -xa '(__dcake_list)'
+
+
+################## test ###########################
+
+function d-test
+    dotnet vstest $argv[1] /TestCaseFilter:"FullyQualifiedName~$argv[2]"
+end
+
+function __test_args1
+    set cmd (commandline -opc)
+    if [ (count $cmd) -eq 1 ]
+        return 0
+    end
+    return 1
+end
+
+function __test_args2
+    set cmd (commandline -opc)
+    if [ (count $cmd) -eq 2 ]
+        return 0
+    end
+    return 1
+end
+
+function __dlls
+    find . -name '*Tests.dll' | grep "bin" | grep "dll" | sed 's/\.\///g'
+end
+
+function __filters 
+    set cmd (commandline -opc)
+    dotnet-filter (pwd)/$cmd[2]
+end
+
+complete -fc d-test -n '__test_args1'  -xa '(__dlls)'
+complete -fc d-test -n '__test_args2'  -xa '(__filters)'
 
 # complete -c dotnet -s m -d 'Run library module as a script (terminates option list)' -xa '(python -c "import pkgutil; print(\'\n\'.join([p[1] for p in pkgutil.iter_modules()]))")'

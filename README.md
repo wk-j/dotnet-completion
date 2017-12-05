@@ -19,6 +19,7 @@
 ### Utility
 
 ```
+- d-test <tab> <tab>
 - d-project <tab>
 - d-solution <tab>
 - d-root
