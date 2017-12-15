@@ -1,6 +1,13 @@
 ## .NET Completion for Fish
 
-![](Screen/DotCompletion.png)
+![](images/DotCompletion.png)
+
+### Installation
+
+```bash
+wget https://raw.githubusercontent.com/wk-j/dotnet-completion/master/src/dotnet.fish --output-document ~/.config/fish/dotnet.fish
+echo "source ~/.config/fish/dotnet.fish" >> ~/.config/fish/config.fish
+```
 
 ### .NET Command Line
 
