@@ -174,7 +174,7 @@ complete -fc dotnet -n 'dotnet_using_command clean'         -xa '(__projs)'
 complete -fc dotnet -n 'dotnet_using_command pack'          -l  output  -xa '(__fish_complete_directories (commandline -ct))'
 complete -fc dotnet -n 'dotnet_using_command pack'          -xa '(__projs)'
 complete -fc dotnet -n 'dotnet_using_command test'          -xa '(__projs)'
-complete -fc dotnet -n 'dotnet_using_command watch'         -xa '(__projs)'
+complete -fc dotnet -n 'dotnet_using_command watch'         -l  project -xa '(__projs)'
 
 abbr --add daa "dotnet add"
 abbr --add dnn "dotnet new"
