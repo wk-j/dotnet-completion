@@ -185,7 +185,7 @@ abbr --add dss "dotnet sln"
 abbr --add dpp "dotnet pack"
 abbr --add dbb "dotnet build"
 abbr --add dcc "dotnet clean"
-abbr --add dww "dotnet watch"
+abbr --add dww "dotnet watch --project"
 
 function d-project
     set -g __droot (pwd)
