@@ -26,9 +26,6 @@ function __projs
     find . -name '*.fsproj'  | grep "proj" | sed 's/\.\///g'
     find . -name '*.csproj'  | grep "proj" | sed 's/\.\///g'
     find . -name '*.sln'  | grep "sln" | sed 's/\.\///g'
-    #find $PWD -name '*.fsproj'
-    #find $PWD -name '*.csproj'
-    #find $PWD -name '*.sln'
 end
 
 
@@ -46,7 +43,7 @@ complete -fc dotnet -n 'dotnet_needs_command' -a clean      -d 'Clean build outp
 complete -fc dotnet -n 'dotnet_needs_command' -a sln        -d 'Modify solution (SLN) files'
 
 for app in 'console' 'classlib' 'mstest' 'xunit' 'web' 'mvc' 'webapi' 'sln'
-    complete -fc dotnet -n 'dotnet_using_command new'           -xa $app  
+    complete -fc dotnet -n 'dotnet_using_command new'           -xa $app
     complete -fc dotnet -n 'dotnet_using_command new $app'      -l output   -xa '(__fish_complete_directories (commandline -ct))'
     complete -fc dotnet -n 'dotnet_using_command new $app'      -l language -xa 'F# C#'
 end
@@ -55,13 +52,13 @@ end
 #################### solution ##########################
 
 function sln_select_solution
-    if not dotnet_using_command sln 
+    if not dotnet_using_command sln
         return 1
     end
 
     set cmd (commandline -opc)
     if [ (count $cmd) = 2 ]
-        if not dotnet_using_command sln 
+        if not dotnet_using_command sln
             return 1
         else
             return 0
@@ -73,7 +70,7 @@ end
 
 function sln_select_action
 
-    if not dotnet_using_command sln 
+    if not dotnet_using_command sln
         return 1
     end
 
@@ -87,13 +84,13 @@ function sln_select_action
 
     if not _select_solution
         return 0
-    else 
+    else
         return 1
     end
 end
 
-function sln_select_project 
-    if not dotnet_using_command sln 
+function sln_select_project
+    if not dotnet_using_command sln
         return 1
     end
 
@@ -168,15 +165,16 @@ complete -fc dotnet -n 'add_select_project2'           -xa '(__projs)'
 
 #################### new ##########################
 
-complete -fc dotnet -n 'dotnet_using_command new'       -l name 
+complete -fc dotnet -n 'dotnet_using_command new'       -l name
 
-complete -fc dotnet -n 'dotnet_using_command build'         -xa '(__projs)' 
+complete -fc dotnet -n 'dotnet_using_command build'         -xa '(__projs)'
 complete -fc dotnet -n 'dotnet_using_command restore'       -xa '(__projs)'
 complete -fc dotnet -n 'dotnet_using_command run'           -l  project -xa '(__projs)'
 complete -fc dotnet -n 'dotnet_using_command clean'         -xa '(__projs)'
-complete -fc dotnet -n 'dotnet_using_command pack'          -l  output  -xa '(__fish_complete_directories (commandline -ct))' 
+complete -fc dotnet -n 'dotnet_using_command pack'          -l  output  -xa '(__fish_complete_directories (commandline -ct))'
 complete -fc dotnet -n 'dotnet_using_command pack'          -xa '(__projs)'
 complete -fc dotnet -n 'dotnet_using_command test'          -xa '(__projs)'
+complete -fc dotnet -n 'dotnet_using_command watch'         -xa '(__projs)'
 
 abbr --add daa "dotnet add"
 abbr --add dnn "dotnet new"
@@ -187,6 +185,7 @@ abbr --add dss "dotnet sln"
 abbr --add dpp "dotnet pack"
 abbr --add dbb "dotnet build"
 abbr --add dcc "dotnet clean"
+abbr --add dww "dotnet watch"
 
 function d-project
     set -g __droot (pwd)
@@ -197,7 +196,7 @@ function d-root
     cd $__droot
 end
 
-function d-solution 
+function d-solution
     cd (dirname $argv[1])
 end
 
@@ -215,7 +214,7 @@ end
 
 
 complete -fc d-project   -xa '(__projs)'
-complete -fc d-solution  -xa '(__dsolution_list)' 
+complete -fc d-solution  -xa '(__dsolution_list)'
 complete -fc d-cake      -xa '(__dcake_list)'
 
 
@@ -245,7 +244,7 @@ function __dlls
     find . -name '*Tests.dll' | grep "bin" | grep "dll" | sed 's/\.\///g'
 end
 
-function __filters 
+function __filters
     set cmd (commandline -opc)
     dotnet-filter (pwd)/$cmd[2]
 end

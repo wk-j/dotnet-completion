@@ -21,6 +21,8 @@ echo "source ~/.config/fish/dotnet.fish" >> ~/.config/fish/config.fish
 - dpp = dotnet pack <tab>
 - dbb = dotnet build <tab>
 - dcc = dotnet clean
+
+- dww = dotnet watch
 ```
 
 ### Utility
@@ -33,7 +35,7 @@ echo "source ~/.config/fish/dotnet.fish" >> ~/.config/fish/config.fish
 ```
 
 ### Cake Build
- 
+
 ```
 - d-cake <tab>
 ```
