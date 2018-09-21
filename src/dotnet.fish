@@ -209,7 +209,7 @@ function __dcake_list
 end
 
 function d-cake
-    cake build.cake -target=$argv[1] -experimental
+    dotnet cake build.cake -target=$argv[1] $argv[2]
 end
 
 

@@ -27,7 +27,7 @@ echo "source ~/.config/fish/dotnet.fish" >> ~/.config/fish/config.fish
 
 ### Utility
 
-```
+```bash
 - d-test <tab> <tab>
 - d-project <tab>
 - d-solution <tab>
@@ -36,6 +36,6 @@ echo "source ~/.config/fish/dotnet.fish" >> ~/.config/fish/config.fish
 
 ### Cake Build
 
-```
+```bash
 - d-cake <tab>
 ```
