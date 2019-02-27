@@ -49,6 +49,10 @@ for app in 'console' 'classlib' 'mstest' 'xunit' 'web' 'mvc' 'webapi' 'sln'
 end
 
 
+#################### snippet ##########################
+complete -fc wk-snippet -l query -xa '(wk-snippet --list)'
+abbr --add wksn "wk-snippet --query"
+
 #################### solution ##########################
 
 function sln_select_solution
@@ -251,5 +255,3 @@ end
 
 complete -fc d-test -n '__test_args1'  -xa '(__dlls)'
 complete -fc d-test -n '__test_args2'  -xa '(__filters)'
-
-# complete -c dotnet -s m -d 'Run library module as a script (terminates option list)' -xa '(python -c "import pkgutil; print(\'\n\'.join([p[1] for p in pkgutil.iter_modules()]))")'
