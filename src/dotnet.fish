@@ -49,10 +49,6 @@ for app in 'console' 'classlib' 'mstest' 'xunit' 'web' 'mvc' 'webapi' 'sln'
 end
 
 
-#################### snippet ##########################
-complete -fc wk-snippet -l query -xa '(wk-snippet --list)'
-abbr --add wksn "wk-snippet --query"
-
 #################### solution ##########################
 
 function sln_select_solution
