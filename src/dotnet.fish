@@ -25,7 +25,7 @@ end
 function __projs
     find . -name '*.fsproj'  | grep "proj" | sed 's/\.\///g'
     find . -name '*.csproj'  | grep "proj" | sed 's/\.\///g'
-    find . -name '*.targets'  | grep "proj" | sed 's/\.\///g'
+    find . -name 'Directory.Build.targets'  | grep "proj" | sed 's/\.\///g'
     find . -name '*.sln'  | grep "sln" | sed 's/\.\///g'
 end
 
