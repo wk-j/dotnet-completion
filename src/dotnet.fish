@@ -19,14 +19,13 @@ function dotnet_needs_command
 end
 
 function __slns
-    find . -name '*.sln'  | grep "sln" | sed 's/\.\///g'
+    find . -name '*.sln' -not -path "*node_modules*" | grep "sln" | sed 's/\.\///g'
 end
 
 function __projs
-    find . -name '*.fsproj'  | grep "proj" | sed 's/\.\///g'
-    find . -name '*.csproj'  | grep "proj" | sed 's/\.\///g'
-    # find . -name 'Directory.Build.targets'  | grep "Directory.Build.targets" | sed 's/\.\///g'
-    find . -name '*.sln'  | grep "sln" | sed 's/\.\///g'
+    find . -name '*.fsproj' -not -path "*node_modules*" | grep "proj" | sed 's/\.\///g'
+    find . -name '*.csproj' -not -path "*node_modules*" | grep "proj" | sed 's/\.\///g'
+    find . -name '*.sln'    -not -path "*node_modules*" | grep "sln" | sed 's/\.\///g'
 end
 
 
